@@ -31,12 +31,12 @@
         <li>At B, your options are E and F. Try E.</li>
         <li>E is good. Congratulations!</li>
         </ol>
-        <table border="2">
+        <table border="1" cellspacing="0">
             <th bgcolor="#C0C0C0"> In this example we drew a picture of a tree. The tree is an abstract model of the possible sequences of choices we could make. There is also a data structure called a tree, but usually we don't have a data structure to tell us what choices we have. (If we do have an actual tree data structure, backtracking on it is called depth-first tree searching.) </th>
     </table>
         <hr>
         <h3>The backtracking algorithm.</h3>
-        <div><table border="1"><td>
+        <div><table border="1" cellspacing="0"><td>
            <pre>
             boolean solve(Node n) {
                 if n is a leaf node {
@@ -52,7 +52,7 @@
         </pre></table>
         </div>
         <br>
-    <table border="2"> 
+    <table border="1" cellspacing="0"> 
         <th bgcolor="#C0C0C0"> Notice that the algorithm is expressed as a boolean function. This is essential to understanding the algorithm. If solve(n) is true, that means node n is part of a solution--that is, node n is one of the nodes on a path from the root to some goal node. We say that n is solvable.If solve(n) is false, then there is no path that includes n to any goal node
         </th>
     </table>
@@ -63,14 +63,14 @@
     </ul>
     <p>Hence, to decide whether any non-leaf node n is solvable (part of a path to a goal node), all you have to do is test whether any child of n is solvable. This is done recursively, on each child of n. In the above code, this is done by the lines</p>
     
-    <table border="1"> 
+    <table border="1" cellspacing="0"> 
         <td> <pre> for each child c of n {
         if solve(c) succeeds, return true
         }
     return false</pre></td>
     </table>
     <p>Eventually the recursion will "bottom" out at a leaf node. If the leaf node is a goal node, it is solvable; if the leaf node is not a goal node, it is not solvable. This is our base case. In the above code, this is done by the lines</p><pre>
-    <table border="1">
+    <table border="1" cellspacing="0">
         <td> if n is a leaf node {
         if the leaf is a goal node, return true
         else return false
@@ -84,7 +84,7 @@
     </ol>
 <h2>Non-recursive backtracking, using a stack</h2>
     <p>Backtracking is a rather typical recursive algorithm, and any recursive algorithm can be rewritten as a stack algorithm. In fact, that is how your recursive algorithms are translated into machine or assembly language</p><pre>
-    <table border="1">
+    <table border="1" cellspacing="0">
     <td> boolean solve(Node n) {
         put node n on the stack;
         while the stack is not empty {
@@ -109,7 +109,7 @@ Similarly, when the recursive algorithm finds a goal node, the path information 
 <br><br>
 Here is the recursive backtracking algorithm, modified slightly to print (in reverse order) the nodes along the successful path:
 </p><pre>
-    <table border="1">
+    <table border="1" cellspacing="0">
         <td>boolean solve(Node n) {
         if n is a leaf node {
             if the leaf is a goal node {
@@ -162,7 +162,7 @@ Here is the recursive backtracking algorithm, modified slightly to print (in rev
         <br>
         Here's a definition of the BinaryTree class:
     </p><pre>
-    <table border="1">
+    <table border="1" cellspacing="0">
         <td> public class BinaryTree {
         BinaryTree leftChild = null;
         BinaryTree rightChild = null;
@@ -179,7 +179,7 @@ Here is the recursive backtracking algorithm, modified slightly to print (in rev
     </table></pre>
     <p> next we will create a TreeSearch class, and in it we will define a method makeTree which constructs the above binary tree.
     </p><pre>
-    <table border="1">
+    <table border="1" cellspacing="0">
         <td> static BinaryTree makeTree() {
         BinaryTree root, a, b, c, d, e, f;
         c = new BinaryTree("C", null, null, false);
@@ -193,7 +193,7 @@ Here is the recursive backtracking algorithm, modified slightly to print (in rev
     }</td>
     </table></pre>
     <p>Here's a main program to create a binary tree and try to solve it:</p><pre>
-    <table border="1">
+    <table border="1" cellspacing="0">
         <td> public static void main(String args[])
         {
         BinaryTree tree = makeTree();
@@ -201,7 +201,7 @@ Here is the recursive backtracking algorithm, modified slightly to print (in rev
         }</td>
     </table></pre>
     <p>And finally, here's the recursive backtracking routine to "solve" the binary tree by finding a goal node.</p><pre>
-    <table border="1">
+    <table border="1" cellspacing="0">
         <td> static boolean solvable(BinaryTree node) {
     /* 1 */  if (node == null) return false;
     /* 2 */  if (node.isGoalNode) return true;
@@ -224,7 +224,7 @@ Here is the recursive backtracking algorithm, modified slightly to print (in rev
     <br>
         Each time we ask for another node, we have to check if it is null. In the above we put that check as the first thing insolvable. An alternative would be to check first whether each child exists, and recur only if they do. Here's that alternative version:
     </p><pre>
-    <table border="1">
+    <table border="1" cellspacing="0">
         <td> static boolean solvable(BinaryTree node) {
         if (node.isGoalNode) return true;
         if (node.leftChild != null && solvable(node.leftChild)) return true;
@@ -273,7 +273,7 @@ Here is the recursive backtracking algorithm, modified slightly to print (in rev
         <br>
         <br>
         Here's the code for method 1:</p><pre>
-        <table border="1">
+        <table border="1" cellspacing="0">
             <td> boolean explore1(int row, int column, int color) {
         if (row >= NUM_ROWS) return mapIsOK();
         map[row][column] = color;
@@ -284,7 +284,7 @@ Here is the recursive backtracking algorithm, modified slightly to print (in rev
         return false;
         }</td></table></pre>
     <p> And here's the code for method 2:</p><pre>
-    <table border="1"> <td>
+    <table border="1" cellspacing="0"> <td>
          boolean explore2(int row, int column, int color) {
         if (row >= NUM_ROWS) return true;
         if (okToColor(row, column, color)) {
@@ -298,7 +298,7 @@ Here is the recursive backtracking algorithm, modified slightly to print (in rev
     }</td></table></pre>
     <p> Those appear pretty similar, and you might think they are equally good. However, the timing information suggests otherwise:
     </p>
-    <center> <table border="2">
+    <center> <table border="1" cellspacing="0">
         <thead>
             <th></th>
             <th bgcolor="#808080">2 by 3 map</th>
@@ -334,7 +334,7 @@ Here is the recursive backtracking algorithm, modified slightly to print (in rev
         <br>
         Here's our debugging code. For this trivial program, there's almost more debugging code than actual code, but in larger programs the proportions will be better.</p>
         <pre>
-    <table border="1"> 
+    <table border="1" cellspacing="0"> 
         <td> static String name(BinaryTree node) {
         if (node == null) return null;
         else return node.name;
@@ -355,7 +355,7 @@ Here is the recursive backtracking algorithm, modified slightly to print (in rev
     }</td></table></pre>
     <br>
     <p> To use this code, we modify solvable as follows:</p><pre>
-    <table border="1"> <td>
+    <table border="1" cellspacing="0"> <td>
     static boolean solvable(BinaryTree node) {
         enter(node);
         if (node == null) return no(node);
@@ -399,7 +399,7 @@ Here is the recursive backtracking algorithm, modified slightly to print (in rev
         <br>
         <br>
         The simple solution is to make your debugging statements conditional. For example,</p><pre>
-        <table border="1"> <td>
+        <table border="1" cellspacing="0"> <td>
     static final boolean debugging = false;
     static void enter(BinaryTree node) {
         if (debugging) {
@@ -429,10 +429,10 @@ Here is the recursive backtracking algorithm, modified slightly to print (in rev
     <br>
      If an Exception is thrown, you can get information about just where it happened by sending it the message printStackTrace(PrintStream). Since an Exception is an object like any other, you can create and throw your own Exceptions. However, Java programmers don't always realize that you can create an Exception without throwing it. For example, the following code
     </p><pre>
-    <table border="1"> <td> new Exception("Checkpoint Charlie").printStackTrace(System.out);</td></table></pre>
+    <table border="1" cellspacing="0"> <td> new Exception("Checkpoint Charlie").printStackTrace(System.out);</td></table></pre>
     <p> will print out a message something like this, and the program will then continue normally. That is, the above code just acts like a print statement.
     </p><pre>
-    <table border="1">
+    <table border="1" cellspacing="0">
         <td> java.lang.Exception: Checkpoint Charlie
         at TreeSearch.solvable(TreeSearch.java:53)
         at TreeSearch.solvable(TreeSearch.java:57)
@@ -446,7 +446,7 @@ Here is the recursive backtracking algorithm, modified slightly to print (in rev
     <p> I call the following puzzle "Cindy's puzzle" for historical reasons. You have some number n of black marbles and the same number of white marbles, and you have a playing board which consists simply of a line of 2n+1 spaces to put the marbles in. Start with the black marbles all at one end (say, the left), the white marbles all at the other end, and a free space in between.
     </p>
     <center>
-    <table border="2">
+    <table border="1" cellspacing="0">
         <thead>
             <th bgcolor="#808080"><img src="./assets/black-ball.jpg" alt="black-ball"></th>
             <th bgcolor="#808080"><img src="./assets/black-ball.jpg" alt="black-ball"></th>
@@ -457,7 +457,7 @@ Here is the recursive backtracking algorithm, modified slightly to print (in rev
     </table></center>
     <p> The goal is to reverse the positions of the marbles:</p>
     <br> <center>
-    <table border="2" >
+    <table border="1" cellspacing="0">
         <thead>
             <th bgcolor="#808080"><img src="./assets/white-ball.jpg" alt="white-ball"></th>
             <th bgcolor="#808080"><img src="./assets/white-ball.jpg" alt="white-ball"></th>
@@ -473,84 +473,67 @@ Here is the recursive backtracking algorithm, modified slightly to print (in rev
         <li>Jump ahead over exactly one marble of the opposite color, if the space just beyond that marble is clear.</li>
     </ul>
     <p> For example, you could make the following sequence of moves:</p>
-    <h3> Starting position:
-    <center>
-    <table border="2">
-        <thead>
-            <th bgcolor="#808080"><img src="./assets/black-ball.jpg" alt="black-ball"></th>
-            <th bgcolor="#808080"><img src="./assets/black-ball.jpg" alt="black-ball"></th>
-            <th bgcolor="#808080">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-            <th bgcolor="#808080"><img src="./assets/white-ball.jpg" alt="white-ball"></th>
-            <th bgcolor="#808080"><img src="./assets/white-ball.jpg" alt="white-ball"></th>
-        </thead>
-    </table></center></h3>	
-	<br>	
-    <h3> Black moves ahead:</h3>
-    <center>
-    <table border="2">
-        <thead>
-            <th bgcolor="#808080"><img src="./assets/black-ball.jpg" alt="black-ball"></th>
-            <th bgcolor="#808080">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-            <th bgcolor="#808080"><img src="./assets/black-ball.jpg" alt="black-ball"></th>
-            <th bgcolor="#808080"><img src="./assets/white-ball.jpg" alt="white-ball"></th>
-            <th bgcolor="#808080"><img src="./assets/white-ball.jpg" alt="white-ball"></th>
-        </thead>
-    </table></center>	
-	 <br>			
-    <h3> White jumps:</h3>
-    <center>
-    <table border="2">
-        <thead>
-            <th bgcolor="#808080"><img src="./assets/black-ball.jpg" alt="black-ball"></th>
-            <th bgcolor="#808080"><img src="./assets/white-ball.jpg" alt="white-ball"></th>
-            <th bgcolor="#808080"><img src="./assets/black-ball.jpg" alt="black-ball"></th>
-            <th bgcolor="#808080">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-            <th bgcolor="#808080"><img src="./assets/white-ball.jpg" alt="white-ball"></th>
-        </thead>
-    </table>	
-</center>	 	
- <h3>Black moves ahead:</h3>
- <center>
-    <table border="2">
-        <thead>
+        <table align="center" cellpadding="20px">            
             <tr>
-                <th bgcolor="#808080"><img src="./assets/black-ball.jpg" alt="black-ball"></th>
-                <th bgcolor="#808080"><img src="./assets/white-ball.jpg" alt="white-ball"></th>
-                <th bgcolor="#808080">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                <th bgcolor="#808080"><img src="./assets/black-ball.jpg" alt="black-ball"></th>
-                <th bgcolor="#808080"><img src="./assets/white-ball.jpg" alt="white-ball"></th>
-            </tr>
-        </thead>
-    </table>
- </center>	 		
- <h3>Black jumps:</h3>
- 	<center>
-        <table border="2">
-            <thead>
-                <tr>
-                    <th bgcolor="#808080">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                    <th bgcolor="#808080"><img src="./assets/white-ball.jpg" alt="white-ball"></th>
-                    <th bgcolor="#808080"><img src="./assets/black-ball.jpg" alt="black-ball"></th>
-                    <th bgcolor="#808080"><img src="./assets/black-ball.jpg" alt="black-ball"></th>
-                    <th bgcolor="#808080"><img src="./assets/white-ball.jpg" alt="white-ball"></th>
-                </tr>
-            </thead>
+               <td> <b>Starting position:</b></td>
+            <td><table border="1" cellspacing="0" >
+                <td bgcolor="#808080"><img src="./assets/black-ball.jpg" alt="black-ball"></td>
+                <td bgcolor="#808080"><img src="./assets/black-ball.jpg" alt="black-ball"></td>
+                <td bgcolor="#808080" width="45px"></td>
+                <td bgcolor="#808080"><img src="./assets/white-ball.jpg" alt="white-ball"></td>        
+                <td bgcolor="#808080"><img src="./assets/white-ball.jpg" alt="white-ball"></td>
+            </table></td>
+            </tr>                
         </table>
-    </center>			
- <h3>White moves ahead:</h3>	
- 		<center>
-            <table border="2">
-                <thead>
+    <table align="center" cellpadding="15px">            
+        <tr>
+           <td> <b>Black moves ahead:</b></td>
+        <td><table border="1" cellspacing="0" >
+            <td bgcolor="#808080"><img src="./assets/black-ball.jpg" alt="black-ball"></td>
+            <td bgcolor="#808080" width="45px"></td>
+            <td bgcolor="#808080"><img src="./assets/black-ball.jpg" alt="black-ball"></td>
+            <td bgcolor="#808080"><img src="./assets/white-ball.jpg" alt="white-ball"></td>        
+            <td bgcolor="#808080"><img src="./assets/white-ball.jpg" alt="white-ball"></td>
+        </table></td>
+        </tr>                
+    </table>
+ <table align="center" cellpadding="35px">            
+    <tr>
+       <td> <b>White jumps:</b></td>
+    <td><table border="1" cellspacing="0" >
+        <td bgcolor="#808080"><img src="./assets/black-ball.jpg" alt="black-ball"></td>
+        <td bgcolor="#808080"><img src="./assets/white-ball.jpg" alt="white-ball"></td>        
+        <td bgcolor="#808080" width="45px"></td>
+        <td bgcolor="#808080"><img src="./assets/black-ball.jpg" alt="black-ball"></td>
+        <td bgcolor="#808080"><img src="./assets/white-ball.jpg" alt="white-ball"></td>
+    </table></td>
+    </tr>                
+</table>
+ <table align="center" cellpadding="40px">            
+    <tr>
+       <td> <b>Black jumps:</b></td>
+    <td><table border="1" cellspacing="0" >
+        <td bgcolor="#808080" width="45px"></td>
+        <td bgcolor="#808080"><img src="./assets/white-ball.jpg" alt="white-ball"></td>        
+        <td bgcolor="#808080"><img src="./assets/black-ball.jpg" alt="black-ball"></td>
+        <td bgcolor="#808080"><img src="./assets/black-ball.jpg" alt="black-ball"></td>
+        <td bgcolor="#808080"><img src="./assets/white-ball.jpg" alt="white-ball"></td>
+    </table></td>
+    </tr>                
+</table>
+            <table align="center" cellpadding="20px">            
                     <tr>
-                        <th bgcolor="#808080"><img src="./assets/white-ball.jpg" alt="white-ball"></th>
-                        <th bgcolor="#808080">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                        <th bgcolor="#808080"><img src="./assets/black-ball.jpg" alt="black-ball"></th>
-                        <th bgcolor="#808080"><img src="./assets/black-ball.jpg" alt="black-ball"></th>
-                        <th bgcolor="#808080"><img src="./assets/white-ball.jpg" alt="white-ball"></th>
-                    </tr>
-                </thead>
+                       <td> <b>White moves ahead:</b></td>
+                    <td><table border="1" cellspacing="0" >
+                        <td bgcolor="#808080"><img src="./assets/white-ball.jpg" alt="white-ball"></td>
+                        <td bgcolor="#808080" width="45px"></td>
+                        <td bgcolor="#808080"><img src="./assets/black-ball.jpg" alt="black-ball"></td>
+                        <td bgcolor="#808080"><img src="./assets/black-ball.jpg" alt="black-ball"></td>
+                        <td bgcolor="#808080"><img src="./assets/white-ball.jpg" alt="white-ball"></td>
+                    </table></td>
+                    </tr>                
             </table>
-        </center>		
+        	
 <h3> stuck!</h3>	 
 <p> Now to the program. The main program will initialize the board, and call a recursive backtracking routine to attempt to solve the puzzle. The backtracking routine will either succeed and print out a winning path, or it will fail, and the main program will have to print out the bad news.
 <br><br>
@@ -575,7 +558,7 @@ We write another method <b> int[] makeMove(int[] oldBoard, int position)</b> tha
 <br><br>
 With these methods, our central backtracking method can be written as follows:
 <br><pre>
-    <table border="1">
+    <table border="1" cellspacing="0">
      <td> boolean solvable(int[] board) {
             if (puzzleSolved(board)) {
                 return true;
@@ -613,7 +596,7 @@ Here is some output from the program:
  2. &nbsp; BLACK  BLACK  _____  BLACK  WHITE  WHITE  WHITE <br>
  1. &nbsp; BLACK  BLACK  BLACK  _____  WHITE  WHITE  WHITE <br>
  <br><br></b>
- <table border="1">
+ <table border="1" cellspacing="0">
     <td bgcolor="#C0C0C0">
 Notice that the solution is given in reverse order: BLACK starts out on the left and WHITE on the right, as in the last line. I've added line numbers to the actual output in order to emphasize this point. Backtracking always produces its results (sequence of choices) in reverse order; it is up to you, the programmer, to reverse the results again to get them in the correct order.</td>
 </table></body>
